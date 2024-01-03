@@ -1,0 +1,207 @@
+[
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "relationship",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Boolean",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Column",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "ForeignKey",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Integer",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "String",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "declarative_base",
+        "importPath": "sqlalchemy.ext.declarative",
+        "description": "sqlalchemy.ext.declarative",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.declarative",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "get_user",
+        "kind": 2,
+        "importPath": "app.actions",
+        "description": "app.actions",
+        "peekOfCode": "def get_user(db: Session, user_id: int):\n    return db.query(models.User).filter(models.User.id == user_id).first()\ndef get_user_by_email(db: Session, email: str):\n    return db.query(models.User).filter(models.User.email == email).first()\ndef get_users(db: Session, skip: int = 0, limit: int = 100):\n    return db.query(models.User).offset(skip).limit(limit).all()\ndef create_user(db: Session, user: schemas.UserCreate):\n    fake_hashed_password = user.password + \"notreallyhashed\"\n    db_user = models.User(\n      email=user.email,",
+        "detail": "app.actions",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_by_email",
+        "kind": 2,
+        "importPath": "app.actions",
+        "description": "app.actions",
+        "peekOfCode": "def get_user_by_email(db: Session, email: str):\n    return db.query(models.User).filter(models.User.email == email).first()\ndef get_users(db: Session, skip: int = 0, limit: int = 100):\n    return db.query(models.User).offset(skip).limit(limit).all()\ndef create_user(db: Session, user: schemas.UserCreate):\n    fake_hashed_password = user.password + \"notreallyhashed\"\n    db_user = models.User(\n      email=user.email,\n      hashed_password=fake_hashed_password,\n      name=user.name",
+        "detail": "app.actions",
+        "documentation": {}
+    },
+    {
+        "label": "get_users",
+        "kind": 2,
+        "importPath": "app.actions",
+        "description": "app.actions",
+        "peekOfCode": "def get_users(db: Session, skip: int = 0, limit: int = 100):\n    return db.query(models.User).offset(skip).limit(limit).all()\ndef create_user(db: Session, user: schemas.UserCreate):\n    fake_hashed_password = user.password + \"notreallyhashed\"\n    db_user = models.User(\n      email=user.email,\n      hashed_password=fake_hashed_password,\n      name=user.name\n    )\n    db.add(db_user)",
+        "detail": "app.actions",
+        "documentation": {}
+    },
+    {
+        "label": "create_user",
+        "kind": 2,
+        "importPath": "app.actions",
+        "description": "app.actions",
+        "peekOfCode": "def create_user(db: Session, user: schemas.UserCreate):\n    fake_hashed_password = user.password + \"notreallyhashed\"\n    db_user = models.User(\n      email=user.email,\n      hashed_password=fake_hashed_password,\n      name=user.name\n    )\n    db.add(db_user)\n    db.commit()\n    db.refresh(db_user)",
+        "detail": "app.actions",
+        "documentation": {}
+    },
+    {
+        "label": "SQLALCHEMY_DATABASE_URL",
+        "kind": 5,
+        "importPath": "app.database",
+        "description": "app.database",
+        "peekOfCode": "SQLALCHEMY_DATABASE_URL = \"postgresql+psycopg2://fastapi_test:fastapi_test_password@fastapi_test_db/db\"\nengine = create_engine(SQLALCHEMY_DATABASE_URL)\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()",
+        "detail": "app.database",
+        "documentation": {}
+    },
+    {
+        "label": "engine",
+        "kind": 5,
+        "importPath": "app.database",
+        "description": "app.database",
+        "peekOfCode": "engine = create_engine(SQLALCHEMY_DATABASE_URL)\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()",
+        "detail": "app.database",
+        "documentation": {}
+    },
+    {
+        "label": "SessionLocal",
+        "kind": 5,
+        "importPath": "app.database",
+        "description": "app.database",
+        "peekOfCode": "SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()",
+        "detail": "app.database",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "kind": 5,
+        "importPath": "app.database",
+        "description": "app.database",
+        "peekOfCode": "Base = declarative_base()",
+        "detail": "app.database",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 6,
+        "importPath": "app.models",
+        "description": "app.models",
+        "peekOfCode": "class User(Base):\n    __tablename__ = \"users\"\n    id = Column(Integer, primary_key=True, index=True)\n    email = Column(String, unique=True, index=True)\n    name = Column(String)\n    hashed_password = Column(String)\n    is_active = Column(Boolean, default=True)",
+        "detail": "app.models",
+        "documentation": {}
+    },
+    {
+        "label": "UserBase",
+        "kind": 6,
+        "importPath": "app.schemas",
+        "description": "app.schemas",
+        "peekOfCode": "class UserBase(BaseModel):\n    email: str\nclass UserCreate(UserBase):\n    password: str\n    email: str\n    name: str\nclass User(UserBase):\n    id: int\n    is_active: bool",
+        "detail": "app.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "UserCreate",
+        "kind": 6,
+        "importPath": "app.schemas",
+        "description": "app.schemas",
+        "peekOfCode": "class UserCreate(UserBase):\n    password: str\n    email: str\n    name: str\nclass User(UserBase):\n    id: int\n    is_active: bool\nclass Config:\n    orm_mode = True",
+        "detail": "app.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 6,
+        "importPath": "app.schemas",
+        "description": "app.schemas",
+        "peekOfCode": "class User(UserBase):\n    id: int\n    is_active: bool\nclass Config:\n    orm_mode = True",
+        "detail": "app.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "kind": 6,
+        "importPath": "app.schemas",
+        "description": "app.schemas",
+        "peekOfCode": "class Config:\n    orm_mode = True",
+        "detail": "app.schemas",
+        "documentation": {}
+    }
+]
