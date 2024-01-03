@@ -16,6 +16,14 @@
         "documentation": {}
     },
     {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
         "label": "relationship",
         "importPath": "sqlalchemy.orm",
         "description": "sqlalchemy.orm",
@@ -77,6 +85,30 @@
         "description": "sqlalchemy.ext.declarative",
         "isExtraImport": true,
         "detail": "sqlalchemy.ext.declarative",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
         "documentation": {}
     },
     {
@@ -157,6 +189,51 @@
         "description": "app.database",
         "peekOfCode": "Base = declarative_base()",
         "detail": "app.database",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "kind": 2,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "def get_db():\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()\n@app.post(\"/users/\", response_model=schemas.User)\ndef create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):\n    db_user = actions.get_user_by_email(db, email=user.email)\n    if db_user:",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "create_user",
+        "kind": 2,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):\n    db_user = actions.get_user_by_email(db, email=user.email)\n    if db_user:\n        raise HTTPException(status_code=400, detail=\"Email already registered\")\n    return actions.create_user(db=db, user=user)\n@app.get(\"/users/\", response_model=list[schemas.User])\ndef read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):\n    users = actions.get_users(db, skip=skip, limit=limit)\n    return users\n@app.get(\"/users/{user_id}\", response_model=schemas.User)",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "read_users",
+        "kind": 2,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):\n    users = actions.get_users(db, skip=skip, limit=limit)\n    return users\n@app.get(\"/users/{user_id}\", response_model=schemas.User)\ndef read_user(user_id: int, db: Session = Depends(get_db)):\n    db_user = actions.get_user(db, user_id=user_id)\n    if db_user is None:\n        raise HTTPException(status_code=404, detail=\"User not found\")\n    return db_user",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "read_user",
+        "kind": 2,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "def read_user(user_id: int, db: Session = Depends(get_db)):\n    db_user = actions.get_user(db, user_id=user_id)\n    if db_user is None:\n        raise HTTPException(status_code=404, detail=\"User not found\")\n    return db_user",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "app = FastAPI()\n# Dependency\ndef get_db():\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()\n@app.post(\"/users/\", response_model=schemas.User)\ndef create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):",
+        "detail": "app.main",
         "documentation": {}
     },
     {
